@@ -1,2 +1,2 @@
 
-export const API_URI = "https://271f-129-205-113-190.ngrok-free.app/api/v1";
+export const API_URI = "http://37.27.42.7/api/v1";

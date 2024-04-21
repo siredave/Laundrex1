@@ -50,8 +50,8 @@ const routing = createBrowserRouter([
       },
       {
         path: "/dash",
-        element: <Layout/>,
-        // element: <ProtectedRoute><Layout /></ProtectedRoute>,
+        // element: <Layout/>,
+        element: <ProtectedRoute><Layout /></ProtectedRoute>,
         children: [
           {
             index: true,

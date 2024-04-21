@@ -1,24 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import {API_URI} from "../Apis/Api"
-import {COVENE_URL} from "../Apis/Api1"
+import { API_URI } from "../Apis/Api";
+import { COVENE_URL } from "../Apis/Api1";
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // import { AuthContext } from "../components/Context/AuthProvider";
 
-
-
 const Register2 = () => {
+  const navigate = useNavigate();
+
   // const { LoginEmail, LoginName } = useContext(AuthContext);
   const [formFields, setFormFields] = useState({
     email: "",
     password: "",
     name: "",
-    phoneNumber: "",
+    // phoneNumber: "",
   });
   const handleChange = (event) => {
     setFormFields({
@@ -64,27 +65,28 @@ const Register2 = () => {
       alert("please enter all fields");
     }
     // posting to axio
-    // 
+    //
     axios
-      .post( `${API_URI}/users` , {
-        display_name : formFields.name,
-        email : formFields.email,
-        phone_number: formFields.phoneNumber,
-        password : formFields.password,
+      .post(`${API_URI}/users`, {
+        full_name: formFields.name,
+        email: formFields.email,
+        password: formFields.password,
+        // phone: formFields.phoneNumber,
       })
       .then(function (response) {
         console.log(response);
-        notifySuccess()
-        
+        notifySuccess();
+        navigate("/login");
+
         // const userEmail = response.data.data[0].email;
         // const userName = response.data.data[0].name;
         // LoginName(userName);
         // LoginEmail(userEmail);
-          // console.log(userEmail, userName);
-        })
-        .catch(function (error) {
-          console.log(error);
-          notifyError()
+        // console.log(userEmail, userName);
+      })
+      .catch(function (error) {
+        console.log(error);
+        notifyError();
       });
   };
   return (
@@ -135,7 +137,7 @@ const Register2 = () => {
                 name="password"
               />
             </div>
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <span>Phone number </span>
               <input
                 type="phoneNumber"
@@ -144,7 +146,7 @@ const Register2 = () => {
                 onChange={handleChange}
                 name="phoneNumber"
               />
-            </div>
+            </div> */}
             <div className="flex flex-row justify-between w-[350px]">
               <div className="flex flex-row items-start ">
                 <input type="checkbox" className="h-[15px] " />
@@ -156,7 +158,9 @@ const Register2 = () => {
             <div className="pt-8">
               <button className="w-[350px] h-[40px] rounded-xl bg-[#3272A4]">
                 <p className="text-white">
-                  <button type="button">CREATE ACCOUNT </button>
+                  <button type="button">
+                    CREATE ACCOUNT{" "}
+                  </button>
                 </p>
               </button>
               <ToastContainer

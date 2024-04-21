@@ -2,7 +2,8 @@ import React, {useContext, useState} from "react";
 import { UserContext } from "../Context/UserProvider";
 
 const Profile = () => {
-  const { userEmail, userName } = useContext(UserContext);
+  const { authUser } = useContext(UserContext);
+  console.log(authUser, "from profile");
   return (
     <>
       <div className="">
@@ -17,11 +18,11 @@ const Profile = () => {
             <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex flex-row items-center justify-center gap-2">
               <h1 className="text-black font-bold text-[20px]"> Name: </h1>
-              <p className="text-[18px] text-black font-semibold"> {userName} </p>
+              <p className="text-[18px] text-black font-semibold"> {authUser.full_name} </p>
             </div>
             <div className="flex flex-row items-center justify-center gap-2">
               <h1 className="text-black font-bold text-[20px]"> Email: </h1>
-              <p className="text-[18px] text-black font-semibold"> {userEmail}</p>
+              <p className="text-[18px] text-black font-semibold"> {authUser.email}</p>
             </div> 
             </div>
           </div>

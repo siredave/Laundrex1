@@ -7,16 +7,18 @@ export const UserContext = createContext();
 
 
 export const UserProvider = ({ children }) => {
-  const [userEmail, setUserEmail] = useState(null)
-  const [userName, setUserName] = useState(null)
+  const [authUser,setAuthUser] = useState({})
+  // const [userEmail, setUserEmail] = useState(null)
+  // const [userName, setUserName] = useState(null)
+  const [isloading, setIsloading] = useState(null)
 
 
-  const LoginEmail =(email) =>{
-    setUserEmail(email)
-  }
-  const LoginName = (name) =>{
-    setUserName(name)
-  }
+  // const LoginEmail =(email) =>{
+  //   setUserEmail(email)
+  // }
+  // const LoginName = (name) =>{
+  //   setUserName(name)
+  // }
 
   const [formFields, setFormFields] = useState({
     HomeAddress: '',
@@ -90,12 +92,12 @@ export const UserProvider = ({ children }) => {
     setFormFields,
     updateFormData,
     TotalPrice,
-    userEmail, 
-    setUserEmail,
-    userName, 
-    setUserName,
-    LoginEmail,
-    LoginName
+   
+  
+    isloading,
+    setIsloading,
+    authUser,
+    setAuthUser
   };
 
   return (

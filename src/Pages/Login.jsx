@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import { API_URI } from "../Apis/Api";
 import { COVENE_URL } from "../Apis/Api1";
 import { UserContext } from "../components/Context/UserProvider";
-
+import { useNavigate } from "react-router-dom";
+import Layout from "../components/Dashboard/Layout";
 // when getting the error message of "422" we use this headers to change the content type from the json type to "application/x-www-form-urlencoded" this is so because the backend sets the content type
 const config = {
   headers: {
@@ -17,10 +18,9 @@ const config = {
 };
 
 const Login = () => {
-  const {
-    LoginEmail,
-    LoginName
-  } = useContext(UserContext);
+  const navigate = useNavigate()
+  const { authUser,setAuthUser, isloading, setIsloading } =
+    useContext(UserContext);
 
   // sucess and error toastify
   const notifySuccess = () => {
@@ -63,6 +63,9 @@ const Login = () => {
 
   // calling the api
   const Login = (e) => {
+    {
+      setIsloading(true);
+    }
     e.preventDefault();
     // validation: to prevent the user for submitting an empty folder
     if (formFields.username == "" || formFields.password == "") {
@@ -83,11 +86,13 @@ const Login = () => {
         if (response.status === 200) {
           // If successful, call the notify function to display success toast
           notifySuccess();
+          console.log(response.data)
           // set the user email and user name
-          const userEmail = response.data.email;
-          const userName = response.data.name;
-          LoginName(userName);
-          LoginEmail(userEmail);
+          setAuthUser(response.data)
+          const token = response.data.access_token;
+          localStorage.setItem('token',token)
+          navigate('/dash')
+          // console.log(token);
         } else {
           // If not successful, display error toast with the error message
           notifyError();
@@ -96,8 +101,13 @@ const Login = () => {
       .catch(function (error) {
         console.log(error);
         notifyError();
+      })
+      .finally(function () {
+        setIsloading(false);
+        // always executed
       });
   };
+  // console.log(authUser,'auth user here')
   return (
     <>
       <div className="flex flex-row h-screen w-full">
@@ -155,7 +165,15 @@ const Login = () => {
             </div>
             <div className="pt-8">
               <button className="w-[350px] h-[40px] rounded-xl bg-[#3272A4]">
-                <p className="text-white">LOGIN</p>
+                <p
+                  className="block pl-[150px] text-white "
+                  style={{ display: isloading ? "flex" : "none" }}
+                >
+                  loading......
+                </p>
+                <p className="text-white pl-[150px]"
+                style={{ display: isloading ? "none" : "flex" }}
+                >LOGIN</p>
               </button>
               <ToastContainer
                 position="top-left"

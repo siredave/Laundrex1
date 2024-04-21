@@ -37,10 +37,10 @@ const Section2 = () => {
             </p>
             <div
               className="w-[70px] h-[80px] absolute -translate-y-[41px] rounded-xl translate-x-[150px] bg-cover bg-center"
-              style={{ backgroundImage: "url('/count3.png')" }}
+              style={{ backgroundImage: "url('/count2.png')" }}
             ></div>
             <div
-              className="w-[100px] h-[100px] mt-10 fill-white ml-12 bg-cover bg-center"
+              className="w-[80px] h-[80px] mt-10 fill-white ml-14 bg-cover bg-center"
               style={{ backgroundImage: "url('/shirt.png')" }}
             ></div>
           </div>
@@ -61,7 +61,7 @@ const Section2 = () => {
           <div className="w-[220px] h-[200px] bg-[#9bc9ec] relative mt-10 rounded-xl">
             <p className="text-white text-[20px] font-semibold pt-3 pl-5">
               {" "}
-              Delivery{" "}
+              delivery{" "}
             </p>
             <div
               className="w-[70px] h-[80px] absolute -translate-y-[41px] rounded-xl translate-x-[150px] bg-cover bg-center"

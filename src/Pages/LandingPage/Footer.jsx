@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-      <footer className="footer p-10 mt-16 bg-[#000435] text-white ">
+      <footer className="footer p-10 mt-16 bg-[#0c0e1b] text-white ">
         <nav>
           <img
             src="/logo2.jpg"

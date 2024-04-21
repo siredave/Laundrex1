@@ -11,15 +11,14 @@ import Footer from "./Footer";
 const Landing2 = () => {
   return (
     <>
-    
-      <Navbar/>
-     <Section1/>
-      <Section2/>
-      <Section3/>
-     <Section4/>
-      <Section5/>
-      <Section6/>
-      <Footer/>
+      <Navbar />
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+      <Section6 />
+      <Footer />
     </>
   );
 };

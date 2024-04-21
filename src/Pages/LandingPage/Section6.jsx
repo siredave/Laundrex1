@@ -4,8 +4,9 @@ const Section6 = () => {
   return (
     <>
       {/* testimonies */}
+      <div id='Testimonial-Header' className='flex items-center justify-center'>
       <div
-        className="flex flex-col items-center justify-center w-[90%] rounded-xl ml-14 bg-cover bg-center inset-0  mt-20 pb-10 bg-navy-900 "
+        className="flex flex-col items-center justify-center w-[70%] rounded-xl bg-cover bg-center inset-0  mt-20 pb-10 bg-navy-900 "
         style={{ backgroundImage: "url('/before2.png')" }}
       >
         <div className="mt-10">
@@ -54,6 +55,7 @@ const Section6 = () => {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

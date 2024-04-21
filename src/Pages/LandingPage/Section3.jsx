@@ -4,7 +4,7 @@ const Section3 = () => {
   return (
     <>
       {/* about laudrex */}
-      <div className="w-[100%] flex flex-row px-[100px] gap-[80px] mt-[80px]">
+      <div id='About-Header' className="w-[100%] flex flex-row px-[100px] gap-[80px] mt-[80px]">
         <div className="w-[50%] px-10 flex flex-col  items-start justify-center">
           <h1 className="font-bold text-[60px] font-[Montserrat] leading-[55px]">
             {" "}

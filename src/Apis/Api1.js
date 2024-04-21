@@ -1,0 +1,1 @@
+export const COVENE_URL = "https://convene-backend.onrender.com";

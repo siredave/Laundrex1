@@ -1,20 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import {API_URI} from "../Apis/Api"
+import {COVENE_URL} from "../Apis/Api1"
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// import { AuthContext } from "../components/Context/AuthProvider";
+
+
 
 const Register2 = () => {
+  // const { LoginEmail, LoginName } = useContext(AuthContext);
   const [formFields, setFormFields] = useState({
     email: "",
     password: "",
     name: "",
+    phoneNumber: "",
   });
   const handleChange = (event) => {
     setFormFields({
       ...formFields,
       [event.target.name]: event.target.value,
+    });
+  };
+  const notifySuccess = () => {
+    toast.success("Registration successful!", {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Zoom,
+    });
+  };
+  const notifyError = () => {
+    toast.error("Registration Not successful please try again!", {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Zoom,
     });
   };
 
@@ -29,15 +64,27 @@ const Register2 = () => {
       alert("please enter all fields");
     }
     // posting to axio
+    // 
     axios
-      .post(`${API_URI}/users/`, {
-        ...formFields,
+      .post( `${API_URI}/users` , {
+        display_name : formFields.name,
+        email : formFields.email,
+        phone_number: formFields.phoneNumber,
+        password : formFields.password,
       })
       .then(function (response) {
         console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
+        notifySuccess()
+        
+        // const userEmail = response.data.data[0].email;
+        // const userName = response.data.data[0].name;
+        // LoginName(userName);
+        // LoginEmail(userEmail);
+          // console.log(userEmail, userName);
+        })
+        .catch(function (error) {
+          console.log(error);
+          notifyError()
       });
   };
   return (
@@ -88,6 +135,16 @@ const Register2 = () => {
                 name="password"
               />
             </div>
+            <div className="flex flex-col">
+              <span>Phone number </span>
+              <input
+                type="phoneNumber"
+                className="border-0 outline-0 focus:border-red-900 border-b-2 border-[#3272A4] w-[350px] leading-3"
+                value={formFields.phoneNumber}
+                onChange={handleChange}
+                name="phoneNumber"
+              />
+            </div>
             <div className="flex flex-row justify-between w-[350px]">
               <div className="flex flex-row items-start ">
                 <input type="checkbox" className="h-[15px] " />
@@ -102,6 +159,20 @@ const Register2 = () => {
                   <button type="button">CREATE ACCOUNT </button>
                 </p>
               </button>
+              <ToastContainer
+                position="top-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Zoom}
+                key={Math.random()}
+              />
             </div>
             <div className="flex flex-row items-center ml-3 mt-5 gap-1">
               <hr className="h-[2px] w-[100px] bg-[#3272A4]" />
